@@ -29,47 +29,6 @@ Frontend:
 - Vite
 - Tailwind CSS
 
-## Estructura
-
-```text
-backend/
-  app/
-    api/routes/
-      meal_plan/
-      recipe/
-      shopping/
-      user/
-    core/
-    db/
-    models/
-      meal_plan/
-      recipe/
-      shopping/
-      user/
-    services/
-      email/
-      openai/
-    templates/
-    main.py
-    schemas.py
-    utils.py
-  requirements.txt
-  .env.example
-
-frontend/
-  public/
-  src/
-    assets/
-    components/
-    pages/
-    services/
-    styles/
-    utils/
-    App.jsx
-    main.jsx
-  package.json
-```
-
 ## Requisitos
 
 - Python 3.12+
@@ -93,35 +52,9 @@ Copia el ejemplo de variables de entorno:
 copy .env.example .env
 ```
 
-Edita `backend/.env` con tus valores reales:
+Edita `backend/.env` con tus valores reales antes de iniciar el backend.
 
-```env
-APP_NAME=MamaMia API
-DATABASE_URL=sqlite:///./mamamia.db
-SECRET_KEY=usa_una_clave_larga_aleatoria
-ALGORITHM=HS256
-ACCESS_TOKEN_EXPIRE_MINUTES=1440
-
-CORS_ORIGINS=http://localhost:5173,http://127.0.0.1:5173
-TRUSTED_HOSTS=localhost,127.0.0.1,testserver
-
-OPENAI_API_KEY=tu_openai_api_key
-OPENAI_RECIPE_MODEL=gpt-4o-mini
-OPENAI_IMAGE_MODEL=gpt-image-1-mini
-
-FRONTEND_URL=http://localhost:5173
-
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_USERNAME=tu-correo@gmail.com
-SMTP_PASSWORD=tu-app-password
-SMTP_FROM_EMAIL=tu-correo@gmail.com
-SMTP_FROM_NAME=MamaMia
-SMTP_USE_TLS=true
-PASSWORD_RESET_EXPIRE_MINUTES=60
-```
-
-Para Gmail, `SMTP_PASSWORD` debe ser una App Password, no la contrasena normal.
+Puedes usar `backend/.env.example` como guia.
 
 Ejecuta el backend:
 
@@ -210,46 +143,6 @@ docker compose down
 docker compose logs -f backend
 docker compose logs -f frontend
 ```
-
-## Seguridad
-
-- No subas `backend/.env`, `frontend/.env`, bases de datos locales ni `venv`.
-- `.gitignore` ya excluye secretos, entornos virtuales, `node_modules`, `dist` y archivos `.db`.
-- `SECRET_KEY` es obligatorio y debe ser largo y aleatorio.
-- CORS y trusted hosts se configuran desde variables de entorno.
-- Los endpoints de auth tienen rate limiting basico.
-- Los mensajes publicos no exponen claves, SMTP ni detalles internos de proveedores.
-- Para produccion, considera mover la autenticacion a cookies `HttpOnly`, `Secure` y `SameSite`.
-
-## Rutas Principales
-
-Backend:
-
-- `POST /api/auth/signup`
-- `POST /api/auth/login`
-- `POST /api/auth/forgot-password`
-- `POST /api/auth/reset-password`
-- `GET /api/auth/me`
-- `GET /api/recipes`
-- `POST /api/recipes`
-- `POST /api/recipes/generate`
-- `POST /api/recipes/generate-image`
-- `GET /api/shopping-list`
-- `POST /api/shopping-list/items`
-- `GET /api/meal-plan`
-- `POST /api/meal-plan`
-
-Frontend:
-
-- `/home`
-- `/login`
-- `/registro`
-- `/recuperar-password`
-- `/restablecer-password?token=...`
-- `/app/buscar-recetas`
-- `/app/mis-recetas`
-- `/app/lista-compra`
-- `/app/plan-semanal`
 
 ## Notas
 
