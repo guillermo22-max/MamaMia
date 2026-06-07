@@ -1,0 +1,283 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+  body { @apply m-0 min-h-screen bg-orange-50 font-sans text-stone-900; }
+  button { @apply cursor-pointer font-extrabold transition duration-200; }
+  button:disabled { @apply cursor-not-allowed opacity-60; }
+  a { @apply no-underline; }
+  input, select, textarea { @apply w-full rounded-2xl border border-orange-200 bg-white px-4 py-3 text-base text-stone-800 outline-none shadow-sm transition duration-200; }
+  input:focus, select:focus, textarea:focus { @apply border-orange-500 ring-4 ring-orange-200; }
+  label { @apply grid gap-2 font-extrabold text-stone-700; }
+  pre { @apply whitespace-pre-wrap break-words rounded-2xl bg-orange-50 p-3 text-sm leading-6 text-stone-700; }
+}
+
+@layer components {
+  .landing-page { @apply min-h-screen overflow-x-hidden bg-[radial-gradient(circle_at_top_left,rgba(251,146,60,0.25),transparent_36%),linear-gradient(180deg,#fff7ed_0%,#fffbeb_52%,#fff_100%)]; }
+  .dashboard-page { @apply grid min-h-screen grid-cols-[320px_1fr] overflow-x-hidden bg-slate-50; }
+  .landing-header { @apply sticky top-4 z-30 mx-auto mt-5 flex w-[min(1180px,calc(100%_-_2rem))] items-center justify-between gap-6 rounded-[28px] border border-white/80 bg-white/75 px-5 py-4 shadow-xl shadow-orange-900/10 backdrop-blur-xl; }
+  .site-header { @apply sticky top-0 z-30 mx-auto flex w-[min(1180px,calc(100%_-_2rem))] items-center justify-between gap-4 border-b border-white/70 bg-orange-50/80 py-4 backdrop-blur-xl; }
+  .card-surface { @apply rounded-[28px] border border-orange-200 bg-white/85 shadow-warm backdrop-blur-xl; }
+  .brand-block { @apply flex items-center gap-4; }
+  .brand-block strong { @apply block text-xl font-black leading-tight text-stone-950; }
+  .brand-block span { @apply block text-sm font-semibold text-stone-500; }
+  .brand-logo { @apply h-14 w-14 rounded-[20px] object-cover shadow-lg shadow-orange-600/25; }
+  .landing-actions, .header-actions { @apply flex flex-wrap items-center justify-end gap-3; }
+  .landing-actions .ghost-button, .landing-actions .primary-button { @apply rounded-[22px] px-7 py-4 text-base; }
+  .header-actions a { @apply text-sm font-extrabold text-stone-500 hover:text-orange-700; }
+  .user-pill { @apply rounded-full border border-orange-200 bg-white px-4 py-2 font-extrabold text-orange-800; }
+
+  .primary-button { @apply rounded-full border-0 bg-gradient-to-br from-orange-600 to-orange-400 px-5 py-3 font-black text-white shadow-lg shadow-orange-600/25 hover:-translate-y-0.5 hover:shadow-xl; }
+  .secondary-button { @apply rounded-full border border-orange-200 bg-white px-5 py-3 font-black text-orange-800 hover:-translate-y-0.5 hover:bg-orange-50; }
+  .ghost-button { @apply rounded-full border border-orange-200 bg-white/70 px-5 py-3 font-black text-orange-800 hover:-translate-y-0.5 hover:bg-white; }
+  .danger-button { @apply rounded-full border-0 bg-red-600 px-5 py-3 font-black text-white hover:-translate-y-0.5; }
+  .text-button { @apply border-0 bg-transparent p-2 font-black text-orange-700 hover:text-orange-900; }
+  .mini-button { @apply rounded-xl border-0 bg-orange-600 px-3 py-2 text-sm font-black text-white; }
+  .icon-button { @apply grid h-9 w-9 place-items-center rounded-full border-0 bg-white text-xl font-black text-orange-800; }
+  .large { @apply px-7 py-4 text-base; }
+  .full { @apply w-full; }
+
+  .dashboard-sidebar { @apply sticky top-0 flex h-screen flex-col gap-5 border-r border-slate-200 bg-white px-5 py-7 shadow-xl shadow-slate-900/5; }
+  .sidebar-brand { @apply flex items-center gap-4 px-2; }
+  .sidebar-brand strong { @apply text-2xl font-black text-orange-600; }
+  .sidebar-user { @apply grid gap-6 border-b border-slate-200 px-2 pb-6 pt-2; }
+  .sidebar-user span { @apply text-base font-semibold text-slate-600; }
+  .sidebar-user strong { @apply text-base font-black text-slate-950; }
+  .sidebar-nav { @apply grid gap-2; }
+  .sidebar-nav button { @apply flex h-12 items-center gap-3 rounded-lg border-0 bg-transparent px-4 text-left text-base font-extrabold text-slate-700 hover:bg-orange-50 hover:text-orange-700; }
+  .sidebar-nav button span { @apply grid h-6 w-6 place-items-center text-xl text-slate-500; }
+  .sidebar-nav button.active { @apply bg-orange-50 text-orange-700; }
+  .sidebar-nav button.active span { @apply text-orange-600; }
+  .sidebar-primary { @apply mt-auto rounded-lg border-0 bg-gradient-to-r from-orange-500 to-red-500 px-4 py-4 text-base font-black text-white shadow-lg shadow-orange-600/20 hover:-translate-y-0.5; }
+  .sidebar-logout { @apply rounded-lg border border-red-200 bg-white px-4 py-4 text-base font-black text-red-600 hover:bg-red-50; }
+  .dashboard-main { @apply min-w-0 px-8 py-8; }
+  .dashboard-topbar { @apply mb-8 flex items-start justify-between gap-6; }
+  .dashboard-topbar h1 { @apply mb-2 mt-2 text-4xl font-black text-slate-950; }
+  .dashboard-topbar p { @apply m-0 max-w-2xl text-lg leading-7 text-slate-600; }
+  .dashboard-topbar .primary-button { @apply shrink-0 rounded-lg px-5 py-3; }
+  .dashboard-view { @apply min-w-0; }
+
+  .eyebrow { @apply inline-flex rounded-full border border-orange-200 bg-orange-100 px-4 py-2 text-xs font-black uppercase tracking-[0.22em] text-orange-700; }
+  .muted { @apply text-stone-500; }
+  .status-message { @apply mt-4 w-full rounded-2xl border border-orange-200 bg-white px-4 py-3 font-extrabold text-orange-800; }
+  .error-banner, .error-box { @apply my-4 w-full rounded-2xl border border-red-200 bg-red-50 px-4 py-3 font-extrabold text-red-700; }
+  .error-box { @apply m-0 w-full; }
+  .success-box { @apply m-0 w-full rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 font-extrabold text-emerald-700; }
+
+  .hero-section { @apply mx-auto mb-16 mt-8 grid w-[min(1180px,calc(100%_-_2rem))] grid-cols-[1.05fr_.95fr] items-center gap-8; }
+  .hero-copy h1, .generator-copy h1 { @apply my-4 text-[clamp(3rem,8vw,6.8rem)] font-black leading-[0.9] tracking-[-0.08em] text-stone-900; }
+  .hero-copy p, .generator-copy p, .section-heading p { @apply max-w-2xl text-lg leading-8 text-stone-500; }
+  .hero-actions { @apply my-7 flex flex-wrap gap-4; }
+  .hero-stats { @apply flex flex-wrap gap-4; }
+  .hero-stats span { @apply rounded-2xl border border-orange-200 bg-white/80 px-4 py-3 text-stone-500; }
+  .hero-stats strong { @apply mr-1 text-xl text-orange-800; }
+  .hero-visual { @apply relative min-h-[520px] overflow-hidden bg-cover bg-center; }
+  .floating-recipe { @apply absolute rounded-3xl border border-orange-200 bg-white/95 shadow-warm; }
+  .main-recipe { @apply bottom-8 left-8 right-8 p-6; }
+  .main-recipe h3 { @apply my-2 text-3xl font-black text-orange-800; }
+  .main-recipe p { @apply m-0 text-stone-500; }
+  .main-recipe span { @apply font-black text-orange-600; }
+  .floating-recipe.small { @apply px-4 py-3 font-black text-stone-700; }
+  .floating-recipe.one { @apply left-8 top-8; }
+  .floating-recipe.two { @apply right-8 top-32; }
+
+  .feature-grid, .preview-section, .dashboard-section, .generator-section { @apply mx-auto mb-12 w-[min(1180px,calc(100%_-_2rem))]; }
+  .dashboard-view .dashboard-section, .dashboard-view .generator-section { @apply mx-0 mb-0 w-full; }
+  .feature-grid { @apply grid grid-cols-3 gap-4; }
+  .feature-card { @apply p-6; }
+  .feature-card h3 { @apply mb-2 mt-0 text-xl font-black text-orange-800; }
+  .feature-card p { @apply m-0 leading-7 text-stone-500; }
+  .section-heading { @apply mb-5; }
+  .section-heading.center { @apply grid justify-items-center text-center; }
+  .section-heading h2 { @apply mb-1 mt-3 text-[clamp(2rem,4vw,3.5rem)] font-black tracking-[-0.04em] text-stone-900; }
+  .preview-slider { @apply grid grid-cols-[auto_1fr_auto] items-center gap-4; }
+  .preview-grid { @apply grid grid-cols-3 gap-4; }
+  .preview-card { @apply overflow-hidden; }
+  .preview-card div { @apply h-[260px] bg-cover bg-center; }
+  .preview-card span { @apply mx-4 mt-4 inline-flex font-black text-orange-600; }
+  .preview-card h3 { @apply mx-4 mb-4 mt-1 text-xl font-black; }
+  .slider-button { @apply grid h-12 w-12 place-items-center rounded-full border border-orange-200 bg-white text-3xl font-black leading-none text-orange-700 shadow-lg shadow-orange-900/10 hover:-translate-y-0.5 hover:bg-orange-50; }
+  .slider-dots { @apply mt-5 flex justify-center gap-2; }
+  .slider-dots button { @apply h-3 w-3 rounded-full border-0 bg-orange-200 p-0 hover:bg-orange-400; }
+  .slider-dots button.active { @apply w-8 bg-orange-600; }
+
+  .landing-footer { @apply mx-auto mb-6 mt-16 grid w-[min(1180px,calc(100%_-_2rem))] grid-cols-[1fr_auto] items-center gap-6 rounded-[28px] border border-orange-100 bg-white/80 px-6 py-6 shadow-xl shadow-orange-900/10 backdrop-blur-xl; }
+  .footer-brand { @apply flex items-center gap-4; }
+  .footer-brand strong { @apply block text-xl font-black text-stone-950; }
+  .footer-brand span { @apply block text-sm font-semibold text-stone-500; }
+  .footer-links { @apply flex flex-wrap justify-end gap-3; }
+  .footer-links a, .footer-links button { @apply rounded-full border border-orange-200 bg-white px-4 py-2 text-sm font-black text-orange-800 hover:bg-orange-50; }
+  .landing-footer p { @apply col-span-2 m-0 border-t border-orange-100 pt-4 text-sm font-semibold text-stone-500; }
+
+  .generator-section { @apply pt-8; }
+  .dashboard-view .generator-section { @apply pt-0; }
+  .generator-copy { @apply grid justify-items-center text-center; }
+  .generator-copy h1 { @apply max-w-4xl text-[clamp(2.8rem,7vw,5.5rem)]; }
+  .generator-copy p { @apply mt-0; }
+  .generator-box { @apply grid grid-cols-[1fr_auto] gap-3 rounded-3xl border border-orange-200 bg-white p-3 shadow-warm; }
+  .generator-box input { @apply border-0 shadow-none; }
+  .generation-loader { @apply relative mt-6 overflow-hidden p-5; }
+  .generation-loader::before { content: ""; @apply absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-orange-500 via-yellow-400 to-red-500; animation: loaderBar 1.8s ease-in-out infinite; }
+  .generation-loader-copy { @apply mb-5 grid gap-2; }
+  .generation-loader-copy span { @apply text-sm font-black uppercase text-orange-600; }
+  .generation-loader-copy h3 { @apply m-0 text-2xl font-black text-stone-950; }
+  .generation-loader-copy p { @apply m-0 max-w-2xl text-base leading-7 text-stone-500; }
+  .generation-steps { @apply mb-5 grid grid-cols-4 gap-3; }
+  .generation-step { @apply flex items-center gap-3 rounded-2xl border border-orange-100 bg-orange-50 px-3 py-3 text-sm text-orange-900; animation: stepPulse 1.8s ease-in-out infinite; }
+  .generation-step i { @apply grid h-7 w-7 shrink-0 place-items-center rounded-full bg-orange-600 text-xs not-italic font-black text-white; }
+  .generation-step strong { @apply leading-5; }
+  .recipe-skeleton-grid { @apply grid grid-cols-[repeat(auto-fit,minmax(180px,1fr))] gap-4; }
+  .recipe-skeleton { @apply overflow-hidden rounded-2xl border border-orange-100 bg-white; }
+  .recipe-skeleton div { @apply h-32 bg-orange-100; animation: skeletonGlow 1.4s ease-in-out infinite; }
+  .recipe-skeleton span, .recipe-skeleton strong, .recipe-skeleton p { @apply mx-4 mt-4 block rounded-full bg-orange-100; animation: skeletonGlow 1.4s ease-in-out infinite; }
+  .recipe-skeleton span { @apply h-3 w-20; }
+  .recipe-skeleton strong { @apply h-4 w-3/4; }
+  .recipe-skeleton p { @apply mb-4 h-3 w-1/2; }
+  .recipe-grid { @apply grid grid-cols-[repeat(auto-fit,minmax(280px,1fr))] gap-5; }
+  .recipe-search { @apply mb-5 grid grid-cols-[1fr_auto] items-center gap-4 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm; }
+  .recipe-search input { @apply border-0 bg-transparent shadow-none focus:ring-0; }
+  .recipe-search span { @apply whitespace-nowrap rounded-full bg-orange-50 px-4 py-2 text-sm font-black text-orange-700; }
+  .generated-grid { @apply mt-6; }
+  .recipe-card { @apply overflow-hidden rounded-[28px] border border-orange-200 bg-white shadow-lg shadow-orange-900/10; }
+  .recipe-image { @apply relative h-[185px] bg-cover bg-center; }
+  .recipe-image span { @apply absolute left-4 top-4 rounded-full bg-white/95 px-3 py-2 text-xs font-black text-orange-800; }
+  .recipe-image strong { @apply absolute inset-x-4 bottom-4 rounded-2xl bg-white/95 px-4 py-3 text-center text-sm font-black text-orange-800; }
+  .recipe-image.image-loading { @apply overflow-hidden bg-orange-100; }
+  .recipe-image.image-loading::before { content: ""; @apply absolute inset-0 bg-gradient-to-r from-orange-100 via-white to-orange-100; animation: skeletonGlow 1.2s ease-in-out infinite; }
+  .recipe-image.image-loading::after { content: ""; @apply absolute left-1/2 top-1/2 h-14 w-14 -translate-x-1/2 -translate-y-1/2 rounded-full border-4 border-orange-200 border-t-orange-600; animation: spinLoader 1s linear infinite; }
+  .recipe-content { @apply grid gap-3 p-5; }
+  .recipe-content h3 { @apply m-0 text-xl font-black text-orange-800; }
+  .recipe-content p { @apply m-0 leading-7 text-stone-500; }
+  .recipe-meta { @apply flex flex-wrap gap-2; }
+  .recipe-meta span { @apply rounded-full border border-orange-200 bg-orange-50 px-3 py-1 text-xs font-extrabold text-yellow-900; }
+  .servings-control { @apply grid gap-3 rounded-2xl border border-orange-100 bg-orange-50 p-3; }
+  .servings-control > div:first-child, .calories-total { @apply flex items-center justify-between gap-3; }
+  .servings-control span { @apply text-xs font-black uppercase text-stone-500; }
+  .servings-control strong { @apply text-base font-black text-orange-800; }
+  .servings-stepper { @apply grid grid-cols-[42px_1fr_42px] gap-2; }
+  .servings-stepper button { @apply h-10 rounded-xl border-0 bg-orange-600 text-lg font-black text-white; }
+  .servings-stepper input { @apply h-10 rounded-xl border-orange-100 p-0 text-center text-base font-black shadow-none; }
+  .calories-total { @apply rounded-xl bg-white px-3 py-2; }
+  .recipe-details details { @apply mt-2 border-t border-orange-100 pt-3; }
+  .recipe-details summary { @apply cursor-pointer font-black text-orange-800; }
+  .card-actions { @apply flex flex-wrap gap-3; }
+
+  .shopping-layout { @apply grid grid-cols-[.78fr_1.22fr] items-start gap-4; }
+  .shopping-form { @apply grid gap-4 p-5; }
+  .shopping-items { @apply p-4; }
+  .shopping-items ul { @apply m-0 grid list-none gap-3 p-0; }
+  .shopping-items li { @apply flex items-center justify-between gap-4 rounded-2xl border border-orange-100 bg-orange-50 p-4; }
+  .shopping-items li.completed strong { @apply text-stone-500 line-through; }
+  .shopping-items label { @apply flex items-center gap-3 font-medium; }
+  .shopping-items input[type="checkbox"] { @apply h-5 w-5 accent-orange-600; }
+  .shopping-items small { @apply mt-1 block text-stone-500; }
+  .empty-state { @apply p-6 font-bold text-stone-500; }
+  .empty-state p { @apply mt-0; }
+
+  .planner-heading { @apply flex items-end justify-between gap-4; }
+  .planner-heading.compact { @apply mb-4 justify-end; }
+  .week-controls { @apply flex flex-wrap gap-3; }
+  .recipe-drag-tray { @apply mb-4 flex gap-3 overflow-x-auto p-3; }
+  .draggable-recipe { @apply grid w-44 shrink-0 cursor-grab overflow-hidden rounded-2xl border border-orange-100 bg-white text-left shadow-sm transition hover:-translate-y-1 hover:border-orange-300 hover:shadow-lg hover:shadow-orange-900/10 active:cursor-grabbing; }
+  .draggable-recipe * { @apply cursor-grab; }
+  .draggable-recipe div { @apply h-24 bg-cover bg-center; }
+  .draggable-recipe strong { @apply p-3 text-sm leading-5 text-stone-900; }
+  .planner-grid { @apply grid grid-cols-[120px_repeat(7,minmax(230px,1fr))] gap-3 overflow-x-auto p-3; }
+  .planner-corner, .planner-day, .planner-meal-type { @apply rounded-2xl border border-orange-100 bg-orange-50 p-3 font-black text-orange-800; }
+  .planner-day { @apply grid gap-1 text-center; }
+  .planner-day span { @apply text-sm text-stone-500; }
+  .planner-meal-type { @apply grid place-items-center text-center; }
+  .planner-cell { @apply grid min-h-[240px] min-w-[230px] content-start gap-3 rounded-2xl border border-dashed border-orange-200 bg-white/90 p-3 shadow-sm transition; }
+  .planner-cell.has-meal { @apply border-orange-200 bg-orange-50/40; }
+  .planner-cell.drop-hover { @apply border-orange-500 bg-orange-100 ring-4 ring-orange-200; }
+  .planner-empty { @apply grid min-h-[210px] place-items-center rounded-xl border border-dashed border-orange-200 bg-white/70 p-3 text-center text-sm font-black text-stone-400; }
+  .planned-meal { @apply cursor-grab overflow-hidden rounded-2xl border border-orange-200 bg-white text-stone-900 shadow-sm transition hover:-translate-y-1 hover:shadow-lg hover:shadow-orange-900/10 active:cursor-grabbing; }
+  .planned-meal * { @apply cursor-grab; }
+  .planned-meal button, .planned-meal button * { @apply cursor-pointer; }
+  .planned-meal-image { @apply h-32 bg-cover bg-center; }
+  .planned-meal-body { @apply grid gap-1 p-3; }
+  .planned-meal-body span { @apply text-xs font-black uppercase text-orange-600; }
+  .planned-meal strong { @apply block text-sm leading-5; }
+  .planned-meal small { @apply block text-xs leading-5 text-stone-500; }
+  .remove-meal-button { @apply mx-3 mb-3 rounded-xl border border-red-200 bg-white px-3 py-2 text-sm font-black text-red-600 hover:bg-red-50; }
+
+  .modal-backdrop { @apply fixed inset-0 z-50 grid place-items-center bg-stone-950/50 p-4; }
+  .auth-modal { @apply relative w-[min(460px,100%)] p-6; }
+  .auth-modal h2 { @apply mb-1 mt-3 text-3xl font-black text-stone-900; }
+  .modal-close { @apply absolute right-4 top-4 grid h-10 w-10 place-items-center rounded-full border-0 bg-orange-50 text-2xl text-orange-800; }
+  .auth-form { @apply my-5 grid gap-4; }
+  .password-field { @apply grid grid-cols-[1fr_auto] gap-2; }
+  .password-field button { @apply rounded-2xl border-0 bg-orange-50 px-4 font-black text-orange-800; }
+  .forgot-link { @apply justify-self-end border-0 bg-transparent p-0 text-sm font-black text-orange-700 hover:text-orange-900; }
+
+  .reset-page { @apply grid min-h-screen place-items-center bg-[radial-gradient(circle_at_top_left,rgba(251,146,60,0.25),transparent_36%),linear-gradient(180deg,#fff7ed_0%,#fffbeb_52%,#fff_100%)] p-4; }
+  .reset-card { @apply w-[min(520px,100%)] p-7; }
+  .reset-brand { @apply mb-6 flex items-center gap-4; }
+  .reset-brand strong { @apply block text-2xl font-black text-stone-950; }
+  .reset-brand span { @apply block text-sm font-semibold text-stone-500; }
+  .reset-card h1 { @apply mb-2 mt-4 text-4xl font-black tracking-[-0.04em] text-stone-950; }
+
+  .app-loader { @apply grid min-h-screen place-items-center p-4; }
+  .loader-card { @apply w-[min(420px,100%)] rounded-[30px] border border-orange-200 bg-white p-8 text-center shadow-warm; }
+  .loader-logo { @apply mx-auto h-20 w-20 rounded-[26px] object-cover shadow-lg shadow-orange-600/25; }
+}
+
+@media (max-width: 1020px) {
+  .dashboard-page { @apply grid-cols-1; }
+  .dashboard-sidebar { @apply static h-auto gap-4 border-b border-r-0 px-4 py-4; }
+  .sidebar-brand, .sidebar-user { @apply px-0; }
+  .sidebar-user { @apply gap-2 pb-4; }
+  .sidebar-nav { @apply grid-cols-2; }
+  .sidebar-primary { @apply mt-0; }
+  .dashboard-main { @apply px-4 py-6; }
+  .dashboard-topbar { @apply flex-col; }
+  .hero-section, .shopping-layout { @apply grid-cols-1; }
+  .feature-grid, .preview-grid { @apply grid-cols-1; }
+  .preview-slider { @apply grid-cols-1; }
+  .slider-button { @apply mx-auto; }
+  .landing-footer { @apply grid-cols-1; }
+  .footer-links { @apply justify-start; }
+  .landing-footer p { @apply col-span-1; }
+  .hero-visual { @apply min-h-[420px]; }
+  .planner-grid { grid-template-columns: 110px repeat(7, 220px); }
+  .generation-steps { @apply grid-cols-2; }
+}
+
+@media (max-width: 720px) {
+  .sidebar-nav { @apply grid-cols-1; }
+  .dashboard-topbar h1 { @apply text-3xl; }
+  .dashboard-topbar .primary-button { @apply w-full; }
+  .recipe-search { @apply grid-cols-1; }
+  .recipe-search span { @apply w-fit; }
+  .landing-header, .site-header { @apply flex-col items-start; }
+  .landing-actions, .header-actions { @apply justify-start; }
+  .hero-section { @apply mt-4; }
+  .hero-copy h1, .generator-copy h1 { @apply tracking-[-0.05em]; }
+  .generator-box { @apply grid-cols-1; }
+  .generation-steps { @apply grid-cols-1; }
+  .planner-heading { @apply flex-col items-start; }
+  .floating-recipe.two { @apply right-4 top-28; }
+  .main-recipe { @apply bottom-4 left-4 right-4; }
+  .hero-visual { @apply min-h-[360px]; }
+}
+
+@keyframes loaderBar {
+  0%, 100% { transform: translateX(-45%); opacity: .55; }
+  50% { transform: translateX(45%); opacity: 1; }
+}
+
+@keyframes stepPulse {
+  0%, 100% { transform: translateY(0); opacity: .7; }
+  50% { transform: translateY(-2px); opacity: 1; }
+}
+
+@keyframes skeletonGlow {
+  0%, 100% { opacity: .45; }
+  50% { opacity: 1; }
+}
+
+@keyframes spinLoader {
+  to { transform: translate(-50%, -50%) rotate(360deg); }
+}
